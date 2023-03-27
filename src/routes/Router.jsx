@@ -5,8 +5,7 @@ import ROUTES from "./routesModel";
 import CardsPage from "../cards/pages/CardsPage";
 import AboutPage from "../pages/AboutPage";
 import ErrorPage from "../pages/ErrorPage";
-import SandBox from "../sandbox/SandBox";
-
+import SandBox from '../sandbox/SandBox';
 
 const Router = () => {
   return (
@@ -14,8 +13,8 @@ const Router = () => {
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
       
-      <Route path={ROUTES.SANDBOX} element={<SandBox />}>
-      </Route>
+      <Route path={ROUTES.SANDBOX} element={<SandBox /> } />
+      
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
