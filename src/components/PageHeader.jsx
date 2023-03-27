@@ -1,5 +1,6 @@
 import { Divider, Typography } from "@mui/material";
-import { string } from 'prop-types';
+import { string } from "prop-types";
+
 const PageHeader = ({ title, subtitle }) => {
     return (
         <>
@@ -15,6 +16,11 @@ const PageHeader = ({ title, subtitle }) => {
 };
 
 PageHeader.prototype = {
+    title: string.isRequired,
+    subtitle: string.isRequired,
+};
+
+PageHeader.propTypes = {
     title: string.isRequired,
     subtitle: string.isRequired,
 };
