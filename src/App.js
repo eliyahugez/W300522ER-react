@@ -1,3 +1,4 @@
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 // import ChildComp from './sandbox/components/ChildComponent';
 // import PageHeader from './components/PageHeader';
@@ -10,23 +11,19 @@ import { SetArray } from './sandbox/hooks/SetArray';
 import { SetCounter } from './sandbox/hooks/SetCounter';
 import { SetObject } from './sandbox/hooks/SetObject';
 import FatherPropTypes from './sandbox/propTypes/FatherPropTypes';
+import Router from './routes/Router';
+import Layout from './layout/Layout';
 
 function App() {
   // const hwString = 'Hello World';
   // const name = { firstName: 'John', lastName: 'Doe' };
   return (
     <div className="App"  >
-      {/* <PageHeader /> */}
-      {/* <TypographyComponent /> */}
-      {/* <ChildComp firstName={name.firstName} lastName={name.lastName}  /> */}
-      {/* <Cards></Cards>
-      <OnClick></OnClick> */}
-      {/* <FatherPropTypes /> */}
-      {/* <CardsPage /> */}
-      <AboutPage />
-      <SetCounter></SetCounter>
-      <SetObject></SetObject>
-      <SetArray></SetArray>
+      <BrowserRouter>
+        <Layout>
+          <Router />
+        </Layout>
+      </BrowserRouter>
     </div>
   );
 }
