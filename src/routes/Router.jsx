@@ -6,13 +6,22 @@ import CardsPage from "../cards/pages/CardsPage";
 import AboutPage from "../pages/AboutPage";
 import ErrorPage from "../pages/ErrorPage";
 import SandBox from '../sandbox/SandBox';
+import SignupPage from "../users/pages/SignupPage";
+import CardDetailPage from "../cards/pages/CardDetailPage";
+import FatherPropTypes from "../sandbox/propTypes/FatherPropTypes";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
-      <Route path={ROUTES.SANDBOX} element={<SandBox /> } />
+      <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage /> } />
+      <Route path={ROUTES.SIGNUP} element={<SignupPage /> } />
+      <Route path={ROUTES.SANDBOX} element={<SandBox /> } >
+        {/* /sandbox/props => FatherPropTypes */}
+          <Route path="props" element={<FatherPropTypes />} />
+        </Route>
+
       <Route path="*" element={<ErrorPage />} />
     </Routes>
   );
