@@ -5,7 +5,7 @@ import ROUTES from "./routesModel";
 import CardsPage from "../cards/pages/CardsPage";
 import AboutPage from "../pages/AboutPage";
 import ErrorPage from "../pages/ErrorPage";
-import SandBox from "../sandbox/SandBox";
+import SandBox from "../sandbox/Sandbox";
 import SignupPage from "../users/pages/SignupPage";
 import CardDetailPage from "../cards/pages/CardDetailPage";
 import FatherPropTypes from "../sandbox/propTypes/FatherPropTypes";
