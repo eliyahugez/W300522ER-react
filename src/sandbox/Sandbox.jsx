@@ -12,7 +12,7 @@ const SandBox = () => {
           <NavItem label="props" color="black" to="props"></NavItem>
           <NavItem label="todo" color="black" to="todo"></NavItem>
           <NavItem label="life cycle hooks" color="black" to="life-cycle"></NavItem>
-
+          <NavItem label="custom counter hook" color="black" to="custom-counter-hook"></NavItem>
         </Toolbar>
       </AppBar>
 
