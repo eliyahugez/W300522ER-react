@@ -10,6 +10,9 @@ const SandBox = () => {
       <AppBar position="static" color="transparent">
         <Toolbar>
           <NavItem label="props" color="black" to="props"></NavItem>
+          <NavItem label="todo" color="black" to="todo"></NavItem>
+          <NavItem label="life cycle hooks" color="black" to="life-cycle"></NavItem>
+
         </Toolbar>
       </AppBar>
 

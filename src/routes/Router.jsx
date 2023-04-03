@@ -9,6 +9,9 @@ import SandBox from '../sandbox/SandBox';
 import SignupPage from "../users/pages/SignupPage";
 import CardDetailPage from "../cards/pages/CardDetailPage";
 import FatherPropTypes from "../sandbox/propTypes/FatherPropTypes";
+import { SetArray } from "../sandbox/hooks/SetArray";
+import LifeCycleHooks from "../sandbox/life-cycle-hooks/LifeCycleHooks";
+
 
 const Router = () => {
   return (
@@ -18,8 +21,11 @@ const Router = () => {
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage /> } />
       <Route path={ROUTES.SIGNUP} element={<SignupPage /> } />
       <Route path={ROUTES.SANDBOX} element={<SandBox /> } >
-        {/* /sandbox/props => FatherPropTypes */}
+          {/* /sandbox/props => FatherPropTypes */}
           <Route path="props" element={<FatherPropTypes />} />
+          <Route path="todo" element={<SetArray />} />
+          <Route path="life-cycle" element={<LifeCycleHooks />} />
+
         </Route>
 
       <Route path="*" element={<ErrorPage />} />
