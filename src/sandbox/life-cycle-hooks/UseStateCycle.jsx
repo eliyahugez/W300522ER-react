@@ -1,4 +1,5 @@
 import { Container } from "@mui/material";
+import { useState } from "react";
 
 const UseStateCycle = () => {
   const [count, setCount] = useState(() => {
@@ -10,9 +11,9 @@ const UseStateCycle = () => {
   });
 
   return (
-    <Container>
+    <Container maxWidth='lg'>
       {console.log(new Date().toLocaleTimeString())}
-      Count: {count}
+      <h2> Count: {count}</h2>
     </Container>
   );
 };
