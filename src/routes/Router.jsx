@@ -20,6 +20,7 @@ import UseEffectAsComponentUpdateNoDeps from "../sandbox/life-cycle-hooks/UseEff
 import CustomCounterHook from "../sandbox/custom-hooks/CustomCounterHook";
 import Memoization from "../sandbox/memoization/Memoization";
 import UseCallback from "../sandbox/memoization/use-callback/UseCallback";
+import UseMemo from "../sandbox/memoization/use-callback/UseMemo";
 
 const Router = () => {
   return (
@@ -34,6 +35,7 @@ const Router = () => {
         <Route path="custom-counter-hook" element={<CustomCounterHook />} />                      {/** /sandbox/todo */}
         <Route path="memoization" element={<Memoization />}>
           <Route path="use-callback" element={<UseCallback />} />         {/** /sandbox/memoization/use-callback */}
+          <Route path="use-memo" element={<UseMemo />} />         {/** /sandbox/memoization/use-callback */}
           </Route>                  
         <Route path="life-cycle" element={<LifeCycleHooks />}>            {/** /sandbox/life-cycle */}
           <Route path="initial" element={<InitialCycle />} />             {/** /sandbox/life-cycle/initial */}

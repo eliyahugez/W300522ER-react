@@ -11,9 +11,14 @@ const Memoization = () => {
                         label="useCallback"
                         to="use-callback"
                         sx={{ color: "black" }}
-                    >
-
-                    </NavItem>
+                     />
+                    
+                    <NavItem
+                        label="useMemo"
+                        to="use-memo"
+                        sx={{ color: "black" }}
+                     />
+                    
                 </Toolbar>
             </AppBar>
             <Container>
