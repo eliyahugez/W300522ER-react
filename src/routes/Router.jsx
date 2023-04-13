@@ -18,6 +18,8 @@ import UseEffectAsComponentDidUpdate from "../sandbox/life-cycle-hooks/UseEffect
 import UseEffectAsComponentWillUnmount from "../sandbox/life-cycle-hooks/UseEffectAsComponentWillUnmount";
 import UseEffectAsComponentUpdateNoDeps from "../sandbox/life-cycle-hooks/UseEffectAsComponentUpdateNoDeps";
 import CustomCounterHook from "../sandbox/custom-hooks/CustomCounterHook";
+import Memoization from "../sandbox/memoization/Memoization";
+import UseCallback from "../sandbox/memoization/use-callback/UseCallback";
 
 const Router = () => {
   return (
@@ -30,6 +32,9 @@ const Router = () => {
         <Route path="props" element={<FatherPropTypes />} />              {/** /sandbox/props */}
         <Route path="todo" element={<SetArray />} />                      {/** /sandbox/todo */}
         <Route path="custom-counter-hook" element={<CustomCounterHook />} />                      {/** /sandbox/todo */}
+        <Route path="memoization" element={<Memoization />}>
+          <Route path="use-callback" element={<UseCallback />} />         {/** /sandbox/memoization/use-callback */}
+          </Route>                  
         <Route path="life-cycle" element={<LifeCycleHooks />}>            {/** /sandbox/life-cycle */}
           <Route path="initial" element={<InitialCycle />} />             {/** /sandbox/life-cycle/initial */}
           <Route path="use-state-cycle" element={<UseStateCycle />} />    {/** /sandbox/life-cycle/use-state-cycle */}
