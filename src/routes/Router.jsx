@@ -23,15 +23,6 @@ const Router = () => {
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
-      <Route path={ROUTES.SANDBOX} element={<SandBox />}>                 {/** /sandbox */}
-        <Route path="props" element={<FatherPropTypes />} />              {/** /sandbox/props */}
-        <Route path="todo" element={<SetArray />} />                      {/** /sandbox/todo */}
-        <Route path="life-cycle" element={<LifeCycleHooks />}>            {/** /sandbox/life-cycle */}
-          <Route path="initial" element={<InitialCycle />} />             {/** /sandbox/life-cycle/initial */}
-          <Route path="use-state-cycle" element={<UseStateCycle />} />    {/** /sandbox/life-cycle/use-state-cycle */}
-          <Route path="component-did-mount" element={<UseEffectAsComponentDidMount />} />    {/** /sandbox/life-cycle/use-state-cycle */}
-          <Route path="component-did-update" element={<UseEffectAsComponentDidUpdate />} />    {/** /sandbox/life-cycle/use-state-cycle */}
-        </Route>
       <Route path={ROUTES.SANDBOX} element={<SandBox />} >
         {/* /sandbox/props => FatherPropTypes */}
         <Route path="props" element={<FatherPropTypes />} />
