@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import { string } from "prop-types";
 import { func } from "prop-types";
+import { memo } from "react";
 
 const ButtonComp = ({handleClick, children}) => {
   console.log('Rendering button - ', children);
@@ -16,4 +17,5 @@ ButtonComp.propTypes = {
     children: string.isRequired,
 }
 
-export default ButtonComp;
+export default memo(ButtonComp);
+
