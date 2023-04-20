@@ -7,17 +7,21 @@ const useCards = () => {
     const [error, setError] = useState(null);
     const [isPending, setPending] = useState(false);
 
+    const requestStatus = (loading, errorMessage, cards, card = null) => {
+        setPending(loading);
+        setCards(cards);
+        setCard(card);
+        setError(errorMessage);
+    }
+
+
     const handleGetCards = async () => {
         try {
             setPending(true);
             const cards = await getCards();
-            setPending(false);
-            setError(null);
-            setCards(cards);
+            requestStatus(false, null, cards);
         } catch (error) {
-            setPending(false);
-            setError(error);
-            setCards(null);
+            requestStatus(false, error, null);
         }
         
 

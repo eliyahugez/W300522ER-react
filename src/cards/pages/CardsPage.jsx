@@ -6,27 +6,18 @@ import { getCards } from "../services/cardApiService";
 import Spinner from "../../components/Spinner";
 import Error from "../../components/Error";
 import CardsFeedback from "../components/CardsFeedback";
+import useCards from "../hooks/useCards";
 
 
 const CardsPage = () => {
-  const [cards, setCards] = useState();
-  const [error, setError] = useState(null);
-  const [isPending, setPending] = useState(false);
+  const {cards, error, isPending, handleGetCards} = useCards()
 
   useEffect(() => {
-    setPending(true);
-    getCards()
-      .then((data) => {
-        setCards(data);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
-        setPending(false);
-      });
+    handleGetCards();
   }, []);
 
+  const onDeleteCard = (cardId) => console.log(`Delete card: ${cardId}`)
+  
   return (
     <Container>
       <PageHeader title="Cards" subtitle="Here you can find business cards from all categories" />
@@ -35,6 +26,7 @@ const CardsPage = () => {
         isPending={isPending}
         error={error}
         cards={cards}
+        onDelete={onDeleteCard}
       />
       
     </Container>
