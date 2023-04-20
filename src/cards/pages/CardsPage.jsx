@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { getCards } from "../services/cardApiService";
 import Spinner from "../../components/Spinner";
 import Error from "../../components/Error";
+import CardsFeedback from "../components/CardsFeedback";
 
 
 const CardsPage = () => {
@@ -30,12 +31,11 @@ const CardsPage = () => {
     <Container>
       <PageHeader title="Cards" subtitle="Here you can find business cards from all categories" />
 
-      {isPending && <Spinner />}
-      {error && <Error errorMessage={error} />}
-      {cards && !cards.length && <p>
-        OOpsi... there are no cards in the database that match the parameters you entered
-        </p>}
-      {cards && !!cards.length && <Cards cards={cards} />}
+      <CardsFeedback
+        isPending={isPending}
+        error={error}
+        cards={cards}
+      />
       
     </Container>
   )
