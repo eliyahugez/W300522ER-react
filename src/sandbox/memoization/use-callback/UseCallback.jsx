@@ -28,7 +28,6 @@ const UseCallback = () => {
                         <ButtonComp handleClick={incrementHeight}>Height</ButtonComp>
                     </Box>
                 </Box>
-
             </Paper>
         </Box>
     );
