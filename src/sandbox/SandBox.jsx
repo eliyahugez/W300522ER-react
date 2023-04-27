@@ -13,6 +13,7 @@ const SandBox = () => {
           <NavItem label="life cycle hooks" color="black" to="life-cycle"></NavItem>
           <NavItem label="custom counter hook" color="black" to="custom-counter-hook"></NavItem>
           <NavItem label="memoization" color="black" to="memoization"></NavItem>
+          <NavItem label="context" color="black" to="context"></NavItem>
         </Toolbar>
       </AppBar>
 

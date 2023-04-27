@@ -1,10 +1,6 @@
 import { Container } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
-import Cards from "../components/Cards";
-import { useEffect, useState } from "react";
-import { getCards } from "../services/cardApiService";
-import Spinner from "../../components/Spinner";
-import Error from "../../components/Error";
+import { useEffect } from "react";
 import CardsFeedback from "../components/CardsFeedback";
 import useCards from "../hooks/useCards";
 
