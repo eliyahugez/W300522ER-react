@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { getCards } from "../services/cardApiService";
+import { getCard, getCards } from "../services/cardApiService";
+import useAxios from "./useAxios";
 
 const useCards = () => {
     const [cards, setCards] = useState(null);
@@ -14,6 +15,7 @@ const useCards = () => {
         setError(errorMessage);
     }
 
+    useAxios();
 
     const handleGetCards = async () => {
         try {
@@ -23,8 +25,16 @@ const useCards = () => {
         } catch (error) {
             requestStatus(false, error, null);
         }
-        
+    }
 
+    const handleGetCard = async (id) => {
+        try {
+            setPending(true);
+            const card = await getCard(id);
+            requestStatus(false, null, null, card);
+        } catch (error) {
+            requestStatus(false, error, null);
+        }
     }
 
     return {
@@ -32,7 +42,8 @@ const useCards = () => {
         cards,
         isPending,
         error,
-        handleGetCards
+        handleGetCards,
+        handleGetCard
     }
 }
 
