@@ -14,6 +14,7 @@ import FatherPropTypes from './sandbox/propTypes/FatherPropTypes';
 import Router from './routes/Router';
 import Layout from './layout/Layout';
 import { ThemeProvider } from './providers/ThemeProvider';
+import { SnackbarProvider } from './providers/SnackbarProvider';
 
 function App() {
   // const hwString = 'Hello World';
@@ -22,9 +23,11 @@ function App() {
     <div className="App"  >
       <BrowserRouter>
         <ThemeProvider>
-          <Layout>
-            <Router />
-          </Layout>
+          <SnackbarProvider>
+            <Layout>
+              <Router />
+            </Layout>
+          </SnackbarProvider>
         </ThemeProvider>
       </BrowserRouter>
     </div>
