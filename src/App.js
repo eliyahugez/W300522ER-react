@@ -13,6 +13,7 @@ import { SetObject } from './sandbox/hooks/SetObject';
 import FatherPropTypes from './sandbox/propTypes/FatherPropTypes';
 import Router from './routes/Router';
 import Layout from './layout/Layout';
+import { ThemeProvider } from './providers/ThemeProvider';
 
 function App() {
   // const hwString = 'Hello World';
@@ -20,9 +21,11 @@ function App() {
   return (
     <div className="App"  >
       <BrowserRouter>
-        <Layout>
-          <Router />
-        </Layout>
+        <ThemeProvider>
+          <Layout>
+            <Router />
+          </Layout>
+        </ThemeProvider>
       </BrowserRouter>
     </div>
   );
