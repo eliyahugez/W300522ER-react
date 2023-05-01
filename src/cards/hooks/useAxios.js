@@ -5,7 +5,7 @@ const useAxios = () => {
     const snack = useSnackbar();
 
     axios.interceptors.request.use(data => {
-        console.log('in useAxios Request Interceptor', data);
+        console.count('in useAxios Request Interceptor', data);
         return Promise.resolve(data);
     }, null);
 
