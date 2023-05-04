@@ -15,6 +15,7 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
 
 
   return (
+
     <MuiCard sx={{ minWidth: 280, maxWidth: 350 }}>
       <CardActionArea sx={{ p: 2 }}
       onClick={() => navigate(`${ROUTES.CARD_INFO}/${card._id}`)}
