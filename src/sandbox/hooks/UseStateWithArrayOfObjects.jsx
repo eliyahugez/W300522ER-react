@@ -1,16 +1,14 @@
 import { useState } from "react";
 
-export const SetArray = () => {
+const UseStateWithArrayOfObjects = () => {
   const INITIAL_TODO = { todo: "" };
   const [task, setTask] = useState(INITIAL_TODO);
   const [tasks, setTasks] = useState([]);
 
-  // immutable - can't be changed
   const createNewTask = (e) => {
     e.preventDefault();
-    e.stopPropagation();
     setTasks([...tasks, task]);
-    setTask(INITIAL_TODO);
+    return setTask(INITIAL_TODO);
   };
 
   return (
@@ -21,19 +19,23 @@ export const SetArray = () => {
         </h5>
         <input
           type="text"
-          value={task.todo}
           onChange={(e) => setTask({ ...task, todo: e.target.value })}
+          value={task.todo}
         />
-        <button onClick={createNewTask} disabled={!task.todo}>Create</button>
+        <button onClick={createNewTask} disabled={!task.todo}>
+          Create
+        </button>
       </form>
 
       <ul>
-        {tasks.map((task, index) => (
-            <li key={index}>
-               {index + 1}. {task.todo}
-            </li>
+        {tasks.map((todo, index) => (
+          <li key={index}>
+            {index + 1}. {todo.todo}
+          </li>
         ))}
       </ul>
     </div>
   );
 };
+
+export default UseStateWithArrayOfObjects;

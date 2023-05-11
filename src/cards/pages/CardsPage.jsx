@@ -12,7 +12,10 @@ const CardsPage = () => {
     handleGetCards();
   }, []);
 
-  const onDeleteCard = (cardId) => console.log(`Delete card: ${cardId}`)
+  const onDeleteCard = (cardId) => {
+
+    console.log(`Delete card: ${cardId}`)
+  }
   
   return (
     <Container>

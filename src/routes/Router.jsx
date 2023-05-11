@@ -8,7 +8,6 @@ import ErrorPage from "../pages/ErrorPage";
 import SandBox from "../sandbox/SandBox";
 import SignupPage from "../users/pages/SignupPage";
 import CardDetailPage from "../cards/pages/CardDetailPage";
-import FatherPropTypes from "../sandbox/propTypes/FatherPropTypes";
 import { SetArray } from "../sandbox/hooks/SetArray";
 import LifeCycleHooks from "../sandbox/life-cycle-hooks/LifeCycleHooks";
 import InitialCycle from "../sandbox/life-cycle-hooks/InitialCycle";
@@ -31,7 +30,6 @@ const Router = () => {
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>                 {/** /sandbox */}
-        <Route path="props" element={<FatherPropTypes />} />              {/** /sandbox/props */}
         <Route path="todo" element={<SetArray />} />                      {/** /sandbox/todo */}
         <Route path="custom-counter-hook" element={<CustomCounterHook />} />                      {/** /sandbox/todo */}
         <Route path="context" element={<A />} />

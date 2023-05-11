@@ -21,7 +21,7 @@ const useCards = () => {
         try {
             setPending(true);
             const cards = await getCards();
-            // requestStatus(false, null, cards);
+            requestStatus(false, null, cards);
         } catch (error) {
             requestStatus(false, error, null);
         }
