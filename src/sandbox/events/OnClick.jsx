@@ -1,8 +1,8 @@
 import { Button } from "@mui/material";
 
 const OnClick = () => {
-  const handleClick = e => console.log(e);
-
+  const handleClick = e => console.log(e.target);
+  
   return (
     <Button
       onClick={handleClick}
