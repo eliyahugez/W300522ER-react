@@ -4,6 +4,8 @@ import Logo from "../Logo/Logo";
 import LogoIcon from "../Logo/LogoIcon";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import ROUTES from "../../../../routes/routesModel";
+import NavItem from "../../../../routes/NavItem";
 
 const LeftNavBar = () => {
   return (
@@ -12,18 +14,10 @@ const LeftNavBar = () => {
       <Logo />
 
       <Box sx={{ display: { xs: "none", md: "inline-flex" } }}>
-        <Button color="inherit">
-          <Typography>About</Typography>
-        </Button>
-        <Button color="inherit">
-          <Typography>My Cards</Typography>
-        </Button>
-        <Button color="inherit">
-          <Typography>Fav Cards</Typography>
-        </Button>
-        <Button color="inherit">
-          <Typography>Sandbox</Typography>
-        </Button>
+        <NavItem to={ROUTES.ABOUT} label="about" />
+        <NavItem to={ROUTES.MY_CARDS} label="My Cards" />
+        <NavItem to={ROUTES.FAV_CARDS} label="Fav Cards" />
+        <NavItem to={ROUTES.SANDBOX} label="Sandbox" />
       </Box>
     </Box>
   );

@@ -27,7 +27,7 @@ const Router = () => {
     <Routes>
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
-      <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
+      <Route path={`${ROUTES.CARD_DETAILS}/:id`} element={<CardDetailPage />} />
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>                 {/** /sandbox */}
         <Route path="todo" element={<SetArray />} />                      {/** /sandbox/todo */}
