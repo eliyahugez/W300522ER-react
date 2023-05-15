@@ -4,10 +4,11 @@ import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import { func } from "prop-types";
 
-const MoreButton = () => {
+const MoreButton = ({ onClick }) => {
   return (
     <Box sx={{ display: { xs: "inline-flex", md: "none" } }}>
       <IconButton
+        onClick={e => onClick(e.target)}
         size="large"
         color="inherit"
         aria-label="menu"

@@ -6,7 +6,6 @@ import ROUTES from "../../routes/routesModel";
 const SignupPage = () => {
   //const user = null;
    const user = true;
-
   if (user) return <Navigate replace to={ROUTES.CARDS} />;
 
   return (
