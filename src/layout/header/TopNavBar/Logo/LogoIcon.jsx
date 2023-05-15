@@ -1,28 +1,17 @@
-import { Avatar, IconButton } from "@mui/material";
-import NavBarLink from "../../../../routes/NavBarLink";
-import ROUTES from "../../../../routes/routesModel";
+import React from "react";
+import IconButton from "@mui/material/IconButton";
+import Avatar from "@mui/material/Avatar";
 
 const LogoIcon = () => {
   return (
-    <NavBarLink to={ROUTES.CARDS}>
-      <IconButton
-        sx={{
-          display: {
-            xs: "inline-flex",
-            md: "none",
-          },
-        }}
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-      >
-        <Avatar 
-            alt="Business Card Icon"
-            src="/assets/images/business-card.png"
-        />
-      </IconButton>
-    </NavBarLink>
+    <IconButton
+      sx={{ display: { xs: "inline-flex", md: "none" } }}
+      size="large"
+      edge="start"
+      color="inherit"
+      aria-label="menu">
+      <Avatar alt="Business card icon" src="/assets/images/business-card.png" />
+    </IconButton>
   );
 };
 
