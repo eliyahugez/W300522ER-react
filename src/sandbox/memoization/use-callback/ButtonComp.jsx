@@ -1,21 +1,20 @@
-import { Button } from "@mui/material";
-import { string } from "prop-types";
-import { func } from "prop-types";
-import { memo } from "react";
+import React from "react";
+import { func, node } from "prop-types";
+import { colorLog } from "../utils";
 
-const ButtonComp = ({handleClick, children}) => {
-  console.log('Rendering button - ', children);
+const ButtonComp = ({ onClick, children }) => {
+  colorLog(`rendering button ${children}`, "#2d65ff");
   return (
-    <Button variant="outlined" onClick={handleClick} color="primary">
-        {children}
-    </Button>
+    <button style={{ padding: 3 }} onClick={onClick}>
+      {children}
+    </button>
   );
-}
+};
 
 ButtonComp.propTypes = {
-    handleClick: func.isRequired,
-    children: string.isRequired,
-}
+  onClick: func.isRequired,
+  children: node.isRequired,
+};
 
-export default memo(ButtonComp);
-
+export default ButtonComp;
+// export default React.memo(ButtonComp);

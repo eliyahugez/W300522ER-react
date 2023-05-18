@@ -1,36 +1,64 @@
-import { Box, Button, Paper, Typography } from "@mui/material";
-import { useCallback, useMemo, useState } from "react";
-import ButtonComp from "./ButtonComp";
+// import { useState } from "react";
+// import { colorLog } from "../utils";
+// const UseMemo = () => {
+//   const [age, setAge] = useState(1);
+//   const [height, setHeight] = useState(2);
 
+//   const incrementAge = () => setAge(prev => prev + 1);
+//   const incrementHeight = () => setHeight(prev => prev + 1);
+
+//   const slowFunction = () => {
+//     for (let i = 0; i < 3_000_000_000; i++) {}
+//     colorLog("in slow function", "#4caf50");
+
+//     return age * 2;
+//   };
+
+//   return (
+//     <div style={{ position: "fixed", left: "50%", top: "50%" }}>
+//       <p>Height: {height}</p>
+//       {console.log("in rendering...")}
+//       <p>Age multiple: {slowFunction()}</p>
+
+//       <button style={{ padding: 4 }} onClick={incrementAge}>
+//         age
+//       </button>
+//       <button style={{ padding: 4 }} onClick={incrementHeight}>
+//         height
+//       </button>
+//     </div>
+//   );
+// };
+
+// export default UseMemo;
+
+import { useState, useMemo } from "react";
 const UseMemo = () => {
-    const [age, setAge] = useState(1);
-    const [height, setHeight] = useState(0);
+  const [age, setAge] = useState(1);
+  const [height, setHeight] = useState(2);
 
-    const incrementAge = () => setAge(age + 1)
-    const incrementHeight = () => setHeight(height + 1)
+  const incrementAge = () => setAge((prev) => prev + 1);
+  const incrementHeight = () => setHeight((prev) => prev + 1);
 
-    const slowFunction = useMemo(() => {
-        {console.log("slowFunction start")}
-        for (let i = 0; i < 3_000_000_000; i++) { }
-        {console.log("slowFunction end")}
-        return age * 2;
-    }, [age]);
-    
-    return (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Paper sx={{ width: 350, mt: 2, p: 2 }}>
-                <Box>
-                    <Typography align="center" >Age: {age}</Typography>
-                    <Typography align="center" >Age Multiple: {slowFunction}</Typography>
+  const slowFunction = useMemo(() => {
+    for (let i = 0; i < 3_000_000_000; i++) {}
+    console.log("in slow function");
+    return age * 2;
+  }, [age]);
 
-                    <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-                        <Button onClick={incrementAge}>Age</Button>
-                        <Button onClick={incrementHeight}>Height</Button>
-                    </Box>
-                </Box>
+  return (
+    <div style={{ position: "fixed", left: "50%", top: "50%" }}>
+      <p>Height: {height}</p>
+      <p>Age multiple: {slowFunction}</p>
 
-            </Paper>
-        </Box>
-    );
+      <button style={{ padding: 4 }} onClick={incrementAge}>
+        age
+      </button>
+      <button style={{ padding: 4 }} onClick={incrementHeight}>
+        height
+      </button>
+    </div>
+  );
 };
+
 export default UseMemo;

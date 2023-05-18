@@ -1,31 +1,22 @@
-import { AppBar, Container, Toolbar } from "@mui/material";
+import React from "react";
 import { Outlet } from "react-router-dom";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import NavItem from "../../routes/NavItem";
 
 const Memoization = () => {
-    return (
-        <>
-            <AppBar position="static" color="transparent">
-                <Toolbar>
-                    <NavItem
-                        label="useCallback"
-                        to="use-callback"
-                        color="black"
-                     />
-                    
-                    <NavItem
-                        label="useMemo"
-                        to="use-memo"
-                        color="black"
-                     />
-                    
-                </Toolbar>
-            </AppBar>
-            <Container>
-                <Outlet />
-            </Container>
-        </>
-    );
-}
+  return (
+    <>
+      <AppBar position="sticky" color="transparent">
+        <Toolbar>
+          <NavItem label="usecallback" to="use-callback" color="black" />
+          <NavItem label="use memo" to="use-memo" color="black" />
+        </Toolbar>
+      </AppBar>
+
+      <Outlet />
+    </>
+  );
+};
 
 export default Memoization;
