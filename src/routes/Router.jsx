@@ -27,7 +27,7 @@ const Router = () => {
     <Routes>
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
-      <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} />
+      <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} /> {/** /cards/kjshdf98sdf98s */}
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>                 {/** /sandbox */}
         <Route path="todo" element={<SetArray />} />                      {/** /sandbox/todo */}
@@ -35,7 +35,7 @@ const Router = () => {
         <Route path="context" element={<A />} />
         <Route path="memoization" element={<Memoization />}>
           <Route path="use-callback" element={<UseCallback />} />         {/** /sandbox/memoization/use-callback */}
-          <Route path="use-memo" element={<UseMemo />} />         {/** /sandbox/memoization/use-callback */}
+          <Route path="use-memo" element={<UseMemo />} />         {/** /sandbox/memoization/use-memo */}
           </Route>                  
         <Route path="life-cycle" element={<LifeCycleHooks />}>            {/** /sandbox/life-cycle */}
           <Route path="initial" element={<InitialCycle />} />             {/** /sandbox/life-cycle/initial */}

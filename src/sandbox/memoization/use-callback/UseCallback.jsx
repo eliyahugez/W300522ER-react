@@ -1,36 +1,43 @@
-import { Box, Paper, Typography } from "@mui/material";
-import { useCallback, useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import ButtonComp from "./ButtonComp";
 
 const UseCallback = () => {
-    const [age, setAge] = useState(1);
-    const [height, setHeight] = useState(0);
+    const [number, setNumber] = useState(1);
+    const [dark, setDark] = useState(false);
 
-    const incrementAge = useCallback(() => {
-        setAge(age + 1)
-    }, [age]
-    );
+    const getItems = useCallback(() => {
+        // super long computation or fetching data from an API
+        return [number, number + 1, number + 2];
+    }, []);
 
-    const incrementHeight = useCallback(() => {
-        setHeight(height + 1)
-    }, [height]
-    );
+    const theme = {
+        backgroundColor: dark ? "#333" : "#fff",
+        color: dark ? "#fff" : "#333",
+    }
 
     return (
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Paper sx={{ width: 350, mt: 2, p: 2 }}>
-                <Box>
-                    <Typography align="center" >Age: {age}</Typography>
-                    <Typography align="center" >Height: {height}</Typography>
-
-                    <Box sx={{ display: "flex", justifyContent: "space-between", mt: 2 }}>
-                        <ButtonComp handleClick={incrementAge}>Age</ButtonComp>
-                        <ButtonComp handleClick={incrementHeight}>Height</ButtonComp>
-                    </Box>
-                </Box>
-            </Paper>
-        </Box>
-    );
+        <div style={theme}>
+            <input
+                type="number"
+                value={number}
+                onChange={(e) => setNumber(parseInt(e.target.value))}
+            />
+            <button onClick={() => setDark((prevDark) => !prevDark)}>
+                Toggle theme
+            </button>
+            <List getItems={getItems} />
+        </div>
+    )
 };
 
+const List = ({ getItems }) => {
+    const [items, setItems] = useState([]);
+
+    useEffect(() => {
+        setItems(getItems());
+        console.log("updating items");
+    }, [getItems]);
+
+    return items.map((item) => <div key={item}>{item}</div>);
+}
 export default UseCallback;

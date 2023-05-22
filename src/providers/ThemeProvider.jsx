@@ -7,7 +7,8 @@ const ThemeContext = React.createContext(null);
 export const ThemeProvider = ({ children }) => {
     let [isDark, setDark] = useState(false);
 
-    const toggleDarkMode = useCallback(() => setDark((prev) => !prev), [setDark]) ;
+    const toggleDarkMode = useCallback(() => setDark((prev) => !prev), 
+        [setDark]) ;
     
     const theme = createTheme({
         palette: {

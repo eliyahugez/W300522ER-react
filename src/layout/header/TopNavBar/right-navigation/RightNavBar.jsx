@@ -1,20 +1,53 @@
-import { Box, IconButton } from "@mui/material";
-import { useTheme } from "../../../../providers/ThemeProvider";
+import React from "react";
+import IconButton from "@mui/material/IconButton";
+import Box from "@mui/material/Box";
+import SearchBar from "./SearchBar";
+// import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
-import DarkModeIcon from "@mui/icons-material/DarkMode";
+import MoreButton from "./MoreButton";
+import Logged from "./Logged";
+import NotLogged from "./NotLogged";
+import MenuBar from "./MenuBar";
 
 const RightNavBar = () => {
+  // const user = true;
+  const user = false;
+  let anchorEl = null;
 
-    const { isDark, toggleDarkMode } = useTheme();
+  const setAnchorEl = (target) => {
+    anchorEl = target;
+    console.log("you opened menu");
+  };
 
-    return (
-        <Box sx={{ display: { xs: "none", md: "inline-flex" } }}>
+  const closeMenu = () => {
+    anchorEl = null;
+    console.log("you closed menu");
+  };
 
-            <IconButton sx={{ marginLeft: 1 }} onClick={toggleDarkMode}>
-                {isDark ? <LightModeIcon /> : <DarkModeIcon />}
-            </IconButton>
-        </Box>
-    )
+  return (
+    <>
+      <Box sx={{ display: { xs: "none", md: "inline-flex" } }}>
+        <SearchBar />
+
+        <IconButton sx={{ marginLeft: 1 }}>
+          <LightModeIcon />
+          {/* <DarkModeIcon /> */}
+        </IconButton>
+
+        {!user && <NotLogged />}
+
+        {user && <Logged setAnchorEl={setAnchorEl} />}
+      </Box>
+
+      <MoreButton onClick={setAnchorEl} />
+
+      <MenuBar
+        isMenuOpen={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onCloseMenu={closeMenu}
+      />
+    </>
+  );
 };
 
 export default RightNavBar;

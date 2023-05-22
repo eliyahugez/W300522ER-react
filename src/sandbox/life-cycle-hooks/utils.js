@@ -1,7 +1,9 @@
 export const getTime = () => {
-    const date = new Date();
-    const time = date.toLocaleTimeString();
-    const milliseconds = date.getMilliseconds();
+  const date = new Date();
+  const time = date.toLocaleTimeString();
+  const millisecond = date.getMilliseconds();
+  return `${time}.${millisecond}`;
+};
 
-    return `${time}. ${milliseconds}`;
-}
+export const colorLog = (text, color) =>
+  console.log(`%c${text}: ${getTime()}`, `color: ${color}; font-weight: bold`);
