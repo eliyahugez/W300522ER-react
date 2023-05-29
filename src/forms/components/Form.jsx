@@ -1,8 +1,9 @@
-import { Box, Grid } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import FormButton from "./FormButton";
-import { func, node, object, string } from "prop-types";
+import { func, node, number, object, string } from "prop-types";
 import { memo } from "react";
+import LoopIcon from "@mui/icons-material/Loop";
 
 const Form = ({
   title,
@@ -67,14 +68,14 @@ const Form = ({
 };
 
 Form.propTypes = {
-  title: string.isRequired,
+  title: string,
   onSubmit: func.isRequired,
   onReset: func.isRequired,
   onChange: func.isRequired,
-  to: string.isRequired,
-  color: string.isRequired,
-  spacing: string.isRequired,
-  styles: object.isRequired,
+  to: string,
+  color: string,
+  spacing: number,
+  styles: object,
   children: node.isRequired,
 };
 

@@ -23,6 +23,7 @@ const Input = ({
         name={name}
         value={data[name] || ""}
         required={required}
+        helperText={error}
         error={Boolean(error)}
         onChange={handleChange}
         fullWidth

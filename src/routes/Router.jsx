@@ -21,6 +21,8 @@ import Memoization from "../sandbox/memoization/Memoization";
 import UseCallback from "../sandbox/memoization/use-callback/UseCallback";
 import UseMemo from "../sandbox/memoization/use-callback/UseMemo";
 import A from "../sandbox/context/components/A";
+import FormTest from "../sandbox/forms/FormTest";
+import LoginPage from "../users/pages/LoginPage";
 
 const Router = () => {
   return (
@@ -28,11 +30,14 @@ const Router = () => {
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} /> {/** /cards/kjshdf98sdf98s */}
+      <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>                 {/** /sandbox */}
         <Route path="todo" element={<SetArray />} />                      {/** /sandbox/todo */}
         <Route path="custom-counter-hook" element={<CustomCounterHook />} />                      {/** /sandbox/todo */}
         <Route path="context" element={<A />} />
+        <Route path="form" element={<FormTest />} />
         <Route path="memoization" element={<Memoization />}>
           <Route path="use-callback" element={<UseCallback />} />         {/** /sandbox/memoization/use-callback */}
           <Route path="use-memo" element={<UseMemo />} />         {/** /sandbox/memoization/use-memo */}
