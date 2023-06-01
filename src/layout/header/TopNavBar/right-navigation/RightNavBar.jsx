@@ -7,25 +7,13 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import MoreButton from "./MoreButton";
 import Logged from "./Logged";
 import NotLogged from "./NotLogged";
-import MenuBar from "./MenuBar";
 import { useTheme } from "../../../../providers/ThemeProvider";
 import { useUser } from "../../../../users/providers/UserProvider";
 
 const RightNavBar = () => {
   const { user } = useUser();
 
-  let anchorEl = null;
   const { isDark, toggleDarkMode } = useTheme();
-
-  const setAnchorEl = (target) => {
-    anchorEl = target;
-    console.log("you opened menu");
-  };
-
-  const closeMenu = () => {
-    anchorEl = null;
-    console.log("you closed menu");
-  };
 
   return (
     <>
@@ -43,11 +31,6 @@ const RightNavBar = () => {
 
       <MoreButton />
 
-      <MenuBar
-        isMenuOpen={Boolean(anchorEl)}
-        anchorEl={anchorEl}
-        onCloseMenu={closeMenu}
-      />
     </>
   );
 };
