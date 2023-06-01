@@ -6,7 +6,7 @@ import { useUser } from "../../../../users/providers/UserProvider";
 import useUsers from "../../../../users/hooks/useUsers";
 import MenuLink from "./MenuLink";
 
-const Menu = ({ isOpen, anchorEl, onClose }) => {
+const Menu = ({ isOpen, onClose }) => {
   const { user } = useUser();
   const { handleLogout } = useUsers();
 
@@ -19,7 +19,6 @@ const Menu = ({ isOpen, anchorEl, onClose }) => {
     <MuiMenu
       open={isOpen}
       onClose={onClose}
-      anchorEl={anchorEl}
       anchorOrigin={{
         vertical: "top",
         horizontal: "right",

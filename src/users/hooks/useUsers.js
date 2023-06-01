@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { useUser } from "../providers/UserProvider";
 import useAxios from "../../cards/hooks/useAxios";
 import { login } from "../services/usersApiService";
-import { getUser, setTokenInLocalStorage } from "../services/localStorageService";
+import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
 
 const useUsers = () => {
@@ -39,8 +39,14 @@ const useUsers = () => {
         }
     }, [navigate, requestStatus]);
 
+    const handleLogout = useCallback(() => {
+        removeToken();
+        setUser(null);
+    }, [setUser]);
+
     return {
         handleLogin,
+        handleLogout,
         users,
         isLoading,
         error,

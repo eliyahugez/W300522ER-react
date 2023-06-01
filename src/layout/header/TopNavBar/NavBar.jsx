@@ -5,19 +5,23 @@ import Box from "@mui/material/Box";
 import LeftNavBar from "./left-navigations/LeftNavBar";
 import RightNavBar from "./right-navigation/RightNavBar";
 import SearchBar from "./right-navigation/SearchBar";
+import { MenuProvider } from "./menu/MenuProvider";
 
 export const NavBar = () => {
   return (
-    <AppBar position="sticky">
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        <LeftNavBar />
+    <MenuProvider>
 
-        <Box sx={{ display: { xs: "inline-flex", md: "none" } }}>
-          <SearchBar />
-        </Box>
+      <AppBar position="sticky">
+        <Toolbar sx={{ justifyContent: "space-between" }}>
+          <LeftNavBar />
 
-        <RightNavBar />
-      </Toolbar>
-    </AppBar>
+          <Box sx={{ display: { xs: "inline-flex", md: "none" } }}>
+            <SearchBar />
+          </Box>
+
+          <RightNavBar />
+        </Toolbar>
+      </AppBar>
+    </MenuProvider>
   );
 };
