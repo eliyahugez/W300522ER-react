@@ -27,6 +27,7 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
         cardId={card._id}
         handleDeleteCard={handleDeleteCard}
         handleLikeCard={handleLikeCard}
+        cardUserId={card.user_id}
       />
     </MuiCard>
   );
