@@ -17,7 +17,7 @@ const Menu = ({ isOpen, onClose, anchorEl }) => {
 
   return (
     <MuiMenu
-    anchorEl={anchorEl}
+      anchorEl={anchorEl}
       open={isOpen}
       onClose={onClose}
       anchorOrigin={{

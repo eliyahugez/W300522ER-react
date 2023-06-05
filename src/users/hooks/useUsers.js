@@ -1,10 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { useUser } from "../providers/UserProvider";
 import useAxios from "../../cards/hooks/useAxios";
-import { login } from "../services/usersApiService";
+import { login, signup } from "../services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
+import normalizeUser from "../helpers/normalization/normalizeUser";
 
 const useUsers = () => {
     const [users, setUsers] = useState(null);
@@ -44,9 +45,30 @@ const useUsers = () => {
         setUser(null);
     }, [setUser]);
 
+    const handleSignup = useCallback(
+        async (userFromClient) => {
+            try {
+                const normalizedUser = normalizeUser(userFromClient);
+                await signup(normalizedUser);
+                await handleLogin({
+                    email: userFromClient.email,
+                    password: userFromClient.password,
+                });
+            } catch (error) {
+                requestStatus(false, error, null);
+            }
+        }, [requestStatus, handleLogin]
+    );
+
+    const value = useMemo(
+        () => ({
+            users, isLoading, error, user,
+        }), [users, isLoading, error, user]);
+
     return {
         handleLogin,
         handleLogout,
+        handleSignup,
         users,
         isLoading,
         error,
