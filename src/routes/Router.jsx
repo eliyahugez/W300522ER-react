@@ -23,6 +23,7 @@ import UseMemo from "../sandbox/memoization/use-callback/UseMemo";
 import A from "../sandbox/context/components/A";
 import FormTest from "../sandbox/forms/FormTest";
 import LoginPage from "../users/pages/LoginPage";
+import MyCardsPage from "../cards/pages/MyCardsPage";
 
 const Router = () => {
   return (
@@ -31,6 +32,7 @@ const Router = () => {
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
       <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} /> {/** /cards/kjshdf98sdf98s */}
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+      <Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
 
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>                 {/** /sandbox */}
