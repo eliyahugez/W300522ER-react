@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const CardDetailPage = () => {
   const { id } = useParams();
-  const { card, handleGetCard } = useCards();
+  const { value: { card }, handleGetCard} = useCards();
 
   useEffect(() => {
     handleGetCard(id);

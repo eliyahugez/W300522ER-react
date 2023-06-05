@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { getCard, getCards } from "../services/cardApiService";
 import useAxios from "./useAxios";
 
@@ -37,11 +37,12 @@ const useCards = () => {
         }
     }
 
+    const value = useMemo(() => {
+        return {cards,card,error,isPending}
+    }, [cards,card,error,isPending]);
+
     return {
-        card,
-        cards,
-        isPending,
-        error,
+        value,
         handleGetCards,
         handleGetCard
     }
