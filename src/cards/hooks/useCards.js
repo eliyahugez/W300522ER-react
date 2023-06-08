@@ -1,7 +1,10 @@
 import { useCallback, useMemo, useState } from "react";
-import { deleteCard, getCard, getCards, getMyCards } from "../services/cardApiService";
+import { createCard, deleteCard, getCard, getCards, getMyCards } from "../services/cardApiService";
 import useAxios from "./useAxios";
 import { useSnackbar } from "../../providers/SnackbarProvider";
+import normalizeCard from "../helpers/normalization/normalizeCard";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../routes/routesModel";
 
 const useCards = () => {
     const [cards, setCards] = useState(null);
@@ -10,6 +13,7 @@ const useCards = () => {
     const [isPending, setPending] = useState(false);
 
     const snack = useSnackbar();
+    const navigate = useNavigate();
 
     const requestStatus = (loading, errorMessage, cards, card = null) => {
         setPending(loading);
@@ -40,6 +44,21 @@ const useCards = () => {
         }
     }
 
+    const handleCreateCard = useCallback(
+        async (cardFromClient) => {
+            try {
+                setPending(true);
+                const normalizedCard = normalizeCard(cardFromClient);
+                const card = await createCard(normalizedCard);
+                requestStatus(false, null, null, card);
+                snack("A new business card has been created", "success")
+                navigate(ROUTES.MY_CARDS);
+            } catch (error) {
+                requestStatus(false, error, null);
+            }
+        }, []
+    );
+
     const handleGetMyCards = useCallback(async () => {
         try {
             setPending(true);
@@ -49,14 +68,14 @@ const useCards = () => {
         } catch (error) {
             requestStatus(false, error, null);
         }
-        }, []);
+    }, []);
 
-    
+
     const handleDeleteCard = useCallback(async (cardId) => {
         try {
             setPending(true);
             await deleteCard(cardId);
-            snack("Card deleted successfully","success");
+            snack("Card deleted successfully", "success");
         } catch (error) {
             requestStatus(false, error, null);
         }
@@ -64,15 +83,16 @@ const useCards = () => {
 
 
     const value = useMemo(() => {
-        return {cards,card,error,isPending}
-    }, [cards,card,error,isPending]);
+        return { cards, card, error, isPending }
+    }, [cards, card, error, isPending]);
 
     return {
         value,
         handleGetCards,
         handleGetCard,
         handleGetMyCards,
-        handleDeleteCard
+        handleDeleteCard,
+        handleCreateCard
     }
 }
 
