@@ -8,7 +8,7 @@ const cardSchema = {
     title: Joi.string().min(2).max(256).required(),
     description: Joi.string().min(2).max(1024).required(),
     subtitle: Joi.string().min(2).max(256).required(),
-    imageAlt: Joi.string().min(2).max(256).required(),
+    imageAlt: Joi.string().min(2).max(256).allow(""),
     state: Joi.string().allow(""),
     country: Joi.string().min(2).max(256).required(),
     city: Joi.string().min(2).max(256).required(),
