@@ -18,14 +18,14 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
 
     <MuiCard sx={{ minWidth: 280, maxWidth: 350 }}>
       <CardActionArea sx={{ p: 2 }}
-      onClick={() => navigate(`${ROUTES.CARD_INFO}/${card._id}`)}
+        onClick={() => navigate(`${ROUTES.CARD_INFO}/${card._id}`)}
       >
         <CardHead image={card.image} />
         <CardBody card={card}></CardBody>
       </CardActionArea>
       <CardActionBar
         cardId={card._id}
-        handleDeleteCard={handleDeleteCard}
+        onDelete={handleDeleteCard}
         handleLikeCard={handleLikeCard}
         cardUserId={card.user_id}
       />
