@@ -1,9 +1,8 @@
 import { Grid, Typography } from "@mui/material";
 import Card from "./card/Card";
 
-const Cards = ({cards, onDelete}) => {
+const Cards = ({cards, onDelete, onLike}) => {
 
-  const handleLikeCard = (cardId) => console.log(`Like card: ${cardId}`);
 
   if (!cards.length) {
     return (
@@ -19,8 +18,8 @@ const Cards = ({cards, onDelete}) => {
             <Card
               key={card._id}
               card={card}
-              handleDeleteCard={onDelete}
-              handleLikeCard={handleLikeCard}
+              onDelete={onDelete}
+              onLike={onLike}
             />
           </Grid>
         );

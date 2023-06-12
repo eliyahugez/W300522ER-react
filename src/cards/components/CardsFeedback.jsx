@@ -4,7 +4,7 @@ import Cards from "./Cards"
 import cardType from "../models/types/cardType"
 import Error from "../../components/Error"
 
-const CardsFeedback = ({ isPending, error, cards, onDelete }) => {
+const CardsFeedback = ({ isPending, error, cards, onDelete ,onLike }) => {
     if (isPending) return <Spinner />
     if (error) return <Error errorMessage={error} />
     if (cards && !cards.length) {
@@ -14,8 +14,9 @@ const CardsFeedback = ({ isPending, error, cards, onDelete }) => {
             </p>
         )
     }
-    if (cards) return <Cards cards={cards} onDelete={onDelete} />
+    if (cards) return <Cards cards={cards} onDelete={onDelete} onLike={onLike} />
 }
+
 CardsFeedback.propTypes = {
     isPending: bool.isRequired,
     error: string,
@@ -24,5 +25,8 @@ CardsFeedback.propTypes = {
 
 }
 
+CardsFeedback.defaultProps = {
+    onLike: () => {},
+  };
 
 export default CardsFeedback;

@@ -9,7 +9,7 @@ import CardBody from "./CardBody";
 import CardHead from "./CardHead";
 
 
-const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
+const Card = ({ card, onDelete, onLike }) => {
 
   const navigate = useNavigate(); 
 
@@ -26,9 +26,10 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
       </CardActionArea>
       <CardActionBar
         cardId={card._id}
-        onDelete={handleDeleteCard}
-        handleLikeCard={handleLikeCard}
+        onDelete={onDelete}
+        onLike={onLike}
         cardUserId={card.user_id}
+        cardLikes={card.likes}
       />
     </MuiCard>
   );
@@ -36,8 +37,8 @@ const Card = ({ card, handleDeleteCard, handleLikeCard }) => {
 
 Card.propTypes = {
   card: cardType.isRequired,
-  handleDeleteCard: func.isRequired,
-  handleLikeCard: func.isRequired,
+  onDelete: func.isRequired,
+  onLike: func.isRequired,
 }
 
 export default Card;

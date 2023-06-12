@@ -1,16 +1,18 @@
 import { useCallback, useMemo, useState } from "react";
-import { createCard, deleteCard, getCard, getCards, getMyCards, updateCard } from "../services/cardApiService";
+import { changeLikeStatus, createCard, deleteCard, getCard, getCards, getMyCards, updateCard } from "../services/cardApiService";
 import useAxios from "./useAxios";
 import { useSnackbar } from "../../providers/SnackbarProvider";
 import normalizeCard from "../helpers/normalization/normalizeCard";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
+import { useUser } from "../../users/providers/UserProvider";
 
 const useCards = () => {
     const [cards, setCards] = useState(null);
     const [card, setCard] = useState(null);
     const [error, setError] = useState(null);
     const [isPending, setPending] = useState(false);
+    const { user } = useUser();
 
     const snack = useSnackbar();
     const navigate = useNavigate();
@@ -94,6 +96,27 @@ const useCards = () => {
         }
     }, []);
 
+    const handleLikeCard = useCallback(async (cardId) => {
+        try {
+            const card = await changeLikeStatus(cardId);
+            requestStatus(false, null, cards, card);
+        } catch (error) {
+            requestStatus(false, error, null);
+        }
+    }, []);
+
+    const handleGetFavCards = useCallback(async () => {
+        try {
+            setPending(true);
+            const cards = await getCards();
+            const favCards = cards.filter(
+                card => !!card.likes.find(id => id === user._id)// change to use includes
+            );
+            requestStatus(false, null, favCards);
+        } catch (error) {
+            requestStatus(false, error, null);
+        }
+    }, []);
     const value = useMemo(() => {
         return { cards, card, error, isPending }
     }, [cards, card, error, isPending]);
@@ -105,7 +128,9 @@ const useCards = () => {
         handleGetMyCards,
         handleDeleteCard,
         handleCreateCard,
-        handleUpdateCard
+        handleUpdateCard,
+        handleLikeCard,
+        handleGetFavCards
     }
 }
 
