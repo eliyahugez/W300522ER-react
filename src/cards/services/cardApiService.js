@@ -46,5 +46,13 @@ export const createCard = async card => {
     }
 }
 
+export const updateCard = async (id, card) => {
+    try {
+        const { data } = await axios.put(`${apiUrl}/cards/${id}`, card);
+        return data;
+    } catch (error) {
+        return Promise.reject(error.message);
+    }
+}
 
 

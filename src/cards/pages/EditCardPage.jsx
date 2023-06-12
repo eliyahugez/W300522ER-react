@@ -1,26 +1,48 @@
-import { useUser } from "../../users/providers/UserProvider";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import useCards from "../hooks/useCards";
-import initialCardForm from "./../helpers/initialForms/initialCardForm";
-import useForm from "./../../forms/hooks/useForm";
+import { useUser } from "../../users/providers/UserProvider";
+import useForm from "../../forms/hooks/useForm";
+import initialCardForm from "../helpers/initialForms/initialCardForm";
 import cardSchema from "../models/joi-schema/cardSchema";
-import { Navigate } from "react-router-dom";
+import normalizeCard from "../helpers/normalization/normalizeCard";
+import { useEffect } from "react";
 import ROUTES from "../../routes/routesModel";
+import mapCardToModel from "../helpers/normalization/mapCardToModel";
 import { Container } from "@mui/material";
-import Form from "../../forms/components/Form";
-import Input from "../../forms/components/Input";
+import CardForm from "../components/CardForm";
 
-const CreateCardPage = () => {
-    const { handleCreateCard } = useCards();
+const EditCardPage = () => {
+    const { id } = useParams();
+    const {
+        handleUpdateCard,
+        handleGetCard,
+        value: { card },
+    } = useCards();
+
     const { user } = useUser();
+    const navigate = useNavigate();
 
     const { value, ...rest } = useForm(
         initialCardForm,
         cardSchema,
-        handleCreateCard
+        () => {
+            handleUpdateCard(card._id, {
+                ...normalizeCard(value.formData),
+                user_id: card.user_id,
+                bizNumber: card.bizNumber
+            });
+        }
     )
 
-    if (!user || !user.isBusiness) return <Navigate replace to={ROUTES.CARDS} />
+    useEffect(() => {
+        handleGetCard(id).then(data => {
+            if (data.user_id !== user._id) return navigate(ROUTES.CARDS);
+            const modeledCard = mapCardToModel(data);
+            rest.setFormData(modeledCard);
+        })
+    }, []);
 
+    if (!user) return <Navigate replace to={ROUTES.CARDS} />
     const inputFactory = (name, label, required, type) => ({ name, label, required, type })
     const mapInputs = [
         inputFactory("title", "title", true, "text"),
@@ -46,31 +68,19 @@ const CreateCardPage = () => {
                 justifyContent: "center",
                 alignItems: "center",
             }}>
-            <Form
+            <CardForm
+                title="Edit Card"
                 onSubmit={rest.onSubmit}
-                onChange={rest.validateForm}
                 onReset={rest.handleReset}
-                styles={{ maxWidth: "800px" }}
-                title="Create Card"
-                to={ROUTES.CARDS}>
-                {
-                    mapInputs.map((input, index) => (
-                        <Input
-                            key={index}
-                            {...input}
-                            data={value.formData}
-                            error={value.errors[input.name]}
-                            handleChange={rest.handleChange}
-                            sm={6}
-                        />
-                    ))
-                }
-
-            </Form>
+                errors={value.errors}
+                onFormChange={rest.validateForm}
+                onInputChange={rest.handleChange}
+                data={value.formData}
+                inputs={mapInputs}
+            >
+            </CardForm>
         </Container>
     )
+}
 
-
-};
-
-export default CreateCardPage;
+export default EditCardPage;

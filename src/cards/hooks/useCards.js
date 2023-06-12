@@ -1,5 +1,5 @@
 import { useCallback, useMemo, useState } from "react";
-import { createCard, deleteCard, getCard, getCards, getMyCards } from "../services/cardApiService";
+import { createCard, deleteCard, getCard, getCards, getMyCards, updateCard } from "../services/cardApiService";
 import useAxios from "./useAxios";
 import { useSnackbar } from "../../providers/SnackbarProvider";
 import normalizeCard from "../helpers/normalization/normalizeCard";
@@ -39,6 +39,7 @@ const useCards = () => {
             setPending(true);
             const card = await getCard(id);
             requestStatus(false, null, null, card);
+            return card;
         } catch (error) {
             requestStatus(false, error, null);
         }
@@ -81,6 +82,17 @@ const useCards = () => {
         }
     }, []);
 
+    const handleUpdateCard = useCallback(async (cardId, normalizeCardFrom) => {
+        try {
+            setPending(true);
+            const card = await updateCard(cardId, normalizeCardFrom);
+            requestStatus(false, null, null, card);
+            snack("Card updated successfully", "success");
+            navigate(ROUTES.MY_CARDS);
+        } catch {
+            requestStatus(false, error, null);
+        }
+    }, []);
 
     const value = useMemo(() => {
         return { cards, card, error, isPending }
@@ -92,7 +104,8 @@ const useCards = () => {
         handleGetCard,
         handleGetMyCards,
         handleDeleteCard,
-        handleCreateCard
+        handleCreateCard,
+        handleUpdateCard
     }
 }
 

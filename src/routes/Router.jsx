@@ -25,16 +25,19 @@ import FormTest from "../sandbox/forms/FormTest";
 import LoginPage from "../users/pages/LoginPage";
 import MyCardsPage from "../cards/pages/MyCardsPage";
 import CreateCardPage from "../cards/pages/CreateCardPage";
+import EditCardPage from "../cards/pages/EditCardPage";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
       <Route path={ROUTES.CARDS} element={<CardsPage />} />
-      <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} /> {/** /cards/kjshdf98sdf98s */}
+      <Route path={`${ROUTES.CARD_INFO}/:id`} element={<CardDetailPage />} /> {/** /card-info/kjshdf98sdf98s */}
       <Route path={ROUTES.LOGIN} element={<LoginPage />} />
       <Route path={ROUTES.MY_CARDS} element={<MyCardsPage />} />
+      <Route path={`${ROUTES.EDIT_CARD}/:id`} element={<EditCardPage />} /> {/** /edit-card/kjshdf98sdf98s */}
       <Route path={ROUTES.CREATE_CARD} element={<CreateCardPage />} />
+
 
       <Route path={ROUTES.SIGNUP} element={<SignupPage />} />
       <Route path={ROUTES.SANDBOX} element={<SandBox />}>                 {/** /sandbox */}
@@ -45,7 +48,7 @@ const Router = () => {
         <Route path="memoization" element={<Memoization />}>
           <Route path="use-callback" element={<UseCallback />} />         {/** /sandbox/memoization/use-callback */}
           <Route path="use-memo" element={<UseMemo />} />         {/** /sandbox/memoization/use-memo */}
-          </Route>                  
+        </Route>
         <Route path="life-cycle" element={<LifeCycleHooks />}>            {/** /sandbox/life-cycle */}
           <Route path="initial" element={<InitialCycle />} />             {/** /sandbox/life-cycle/initial */}
           <Route path="use-state-cycle" element={<UseStateCycle />} />    {/** /sandbox/life-cycle/use-state-cycle */}

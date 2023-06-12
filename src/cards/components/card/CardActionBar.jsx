@@ -9,10 +9,13 @@ import { func, string } from "prop-types";
 import { useUser } from "../../../users/providers/UserProvider";
 import { useState } from "react";
 import CardDeleteDialog from "./CardDeleteDialog";
+import { useNavigate } from "react-router-dom";
+import ROUTES from "../../../routes/routesModel";
 
 const CardActionBar = ({ cardId, onDelete, handleLikeCard, cardUserId }) => {
-
+  
   const [isDialogOpen, setDialog] = useState(false);
+  const navigate = useNavigate();
   const { user } = useUser();
 
   const handleDialog = term => {
@@ -33,7 +36,7 @@ const CardActionBar = ({ cardId, onDelete, handleLikeCard, cardUserId }) => {
       >
         <Box>
 
-          {(user?._id === cardUserId || user?.isAdmin) && (
+          {(user && user._id === cardUserId || user?.isAdmin) && (
             <IconButton
               aria-label="delete card"
               onClick={() => handleDialog("open")}
@@ -43,11 +46,11 @@ const CardActionBar = ({ cardId, onDelete, handleLikeCard, cardUserId }) => {
           )}
 
 
-          {user?._id === cardUserId && (
+          {user && user._id === cardUserId && (
             <IconButton
               aria-label="edit card"
               onClick={() =>
-                console.log(`Move to Edit card component with card ${cardId}`)
+                navigate(`${ROUTES.EDIT_CARD}/${cardId}`)
               }
             >
               <ModeEditIcon />
