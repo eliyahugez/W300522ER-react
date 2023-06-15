@@ -1,9 +1,9 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { changeLikeStatus, createCard, deleteCard, getCard, getCards, getMyCards, updateCard } from "../services/cardApiService";
 import useAxios from "./useAxios";
 import { useSnackbar } from "../../providers/SnackbarProvider";
 import normalizeCard from "../helpers/normalization/normalizeCard";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import { useUser } from "../../users/providers/UserProvider";
 
@@ -14,8 +14,26 @@ const useCards = () => {
     const [isPending, setPending] = useState(false);
     const { user } = useUser();
 
+    const [query, setQuery] = useState(""); // the query by, ex: title, bizNumber
+    const [filteredCards, setFilteredCards] = useState(null);// the cards filtered by query
+    const [searchParams] = useSearchParams(); // the search params from the url
+
     const snack = useSnackbar();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setQuery(searchParams.get("q") || "");
+    }, [searchParams]);
+
+    useEffect(() => {
+        if (cards) {
+            setFilteredCards(
+                cards.filter(card =>
+                    card.title.includes(query) || String(card.bizNumber).includes(query))
+            )
+        }
+       
+    }, [query, cards]);
 
     const requestStatus = (loading, errorMessage, cards, card = null) => {
         setPending(loading);
@@ -73,7 +91,6 @@ const useCards = () => {
         }
     }, []);
 
-
     const handleDeleteCard = useCallback(async (cardId) => {
         try {
             setPending(true);
@@ -117,9 +134,10 @@ const useCards = () => {
             requestStatus(false, error, null);
         }
     }, []);
+
     const value = useMemo(() => {
-        return { cards, card, error, isPending }
-    }, [cards, card, error, isPending]);
+        return { cards, card, error, isPending, filteredCards }
+    }, [cards, card, error, isPending, filteredCards]);
 
     return {
         value,
