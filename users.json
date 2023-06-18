@@ -1,0 +1,118 @@
+[{
+  "_id": {
+    "$oid": "6478aab2306cb1d4ea3b6938"
+  },
+  "name": {
+    "first": "regular",
+    "middle": "",
+    "last": "user",
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b6939"
+    }
+  },
+  "phone": "050-0000000",
+  "email": "regular@gmail.com",
+  "password": "$2a$10$psANiaoGdllCjJI7xtAXpO5nNrgLKSA5JqbQzoaLDetjM/TDxdWMm",
+  "image": {
+    "url": "https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_960_720.png",
+    "alt": "business card image",
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b693a"
+    }
+  },
+  "address": {
+    "state": "not defined",
+    "country": "israel",
+    "city": "tel-aviv",
+    "street": "magnive",
+    "houseNumber": 5,
+    "zip": 0,
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b693b"
+    }
+  },
+  "isAdmin": false,
+  "isBusiness": false,
+  "createdAt": {
+    "$date": "2023-06-01T14:26:58.872Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6478aab2306cb1d4ea3b6933"
+  },
+  "name": {
+    "first": "business",
+    "middle": "",
+    "last": "user",
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b6934"
+    }
+  },
+  "phone": "050-0000000",
+  "email": "business@gmail.com",
+  "password": "$2a$10$nfaA/i8d1kZQ//VPRnEx0uqr4rLwcElJfRCTAjiAsjfuXeevZoNSW",
+  "image": {
+    "url": "https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_960_720.png",
+    "alt": "business card image",
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b6935"
+    }
+  },
+  "address": {
+    "state": "not defined",
+    "country": "israel",
+    "city": "tel-aviv",
+    "street": "magnive",
+    "houseNumber": 5,
+    "zip": 0,
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b6936"
+    }
+  },
+  "isAdmin": false,
+  "isBusiness": true,
+  "createdAt": {
+    "$date": "2023-06-01T14:26:58.868Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6478aab2306cb1d4ea3b693d"
+  },
+  "name": {
+    "first": "admin",
+    "middle": "",
+    "last": "user",
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b693e"
+    }
+  },
+  "phone": "050-0000000",
+  "email": "admin@gmail.com",
+  "password": "$2a$10$LBA9S9IH0P0d..Q.YlMpZ.edFSpHOwyltcdGRmzbD7Xt028QacO6.",
+  "image": {
+    "url": "https://cdn.pixabay.com/photo/2016/04/01/10/11/avatar-1299805_960_720.png",
+    "alt": "business card image",
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b693f"
+    }
+  },
+  "address": {
+    "state": "not defined",
+    "country": "israel",
+    "city": "tel-aviv",
+    "street": "magnive",
+    "houseNumber": 5,
+    "zip": 0,
+    "_id": {
+      "$oid": "6478aab2306cb1d4ea3b6940"
+    }
+  },
+  "isAdmin": true,
+  "isBusiness": true,
+  "createdAt": {
+    "$date": "2023-06-01T14:26:58.877Z"
+  },
+  "__v": 0
+}]
