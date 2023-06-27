@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import PageHeader from "../../components/PageHeader";
 import useCards from "../hooks/useCards";
@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 const CardDetailPage = () => {
   const { id } = useParams();
-  const { value: { card }, handleGetCard} = useCards();
+  const { value: { card }, handleGetCard } = useCards();
 
   useEffect(() => {
     handleGetCard(id);
@@ -19,8 +19,10 @@ const CardDetailPage = () => {
         subtitle="Here you can find more details about the business"
       ></PageHeader>
       <div>Details of card: {id}</div>
-
+      <Typography>{
+        card && card.address.country + " " + card.address.city + " " + card.address.street + " " + card.address.houseNumber}</Typography>
       {card && <h1>{card.title}</h1>}
+      {console.log(card)}
     </Container>
   );
 };
