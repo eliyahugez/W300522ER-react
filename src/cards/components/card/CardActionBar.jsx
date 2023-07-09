@@ -12,12 +12,14 @@ import CardDeleteDialog from "./CardDeleteDialog";
 import { useNavigate } from "react-router-dom";
 import ROUTES from "../../../routes/routesModel";
 import useCards from "../../hooks/useCards";
+import { useSnackbar } from "../../../providers/SnackbarProvider";
 
 const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes }) => {
 
   const [isDialogOpen, setDialog] = useState(false);
   const navigate = useNavigate();
   const { user } = useUser();
+  const snack = useSnackbar();
   const { handleLikeCard } = useCards();
   const [isLike, setLike] = useState(() => {
     if (!user) return false;
@@ -39,6 +41,11 @@ const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes }) => {
 
   const handleLike = async () => {
     setLike(!isLike);
+
+    snack("Card LIKE Success", "info");
+    if (isLike) {
+      snack("Card DISLIKE Success", "info");
+    }
     await handleLikeCard(cardId);
     onLike();
   };

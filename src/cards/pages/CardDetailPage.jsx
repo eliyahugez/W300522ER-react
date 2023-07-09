@@ -1,39 +1,90 @@
 import React, { useEffect, useState } from 'react';
 import { Typography, Paper, Grid, Link, IconButton, SpeedDial, SpeedDialIcon, SpeedDialAction, Divider } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useCards from '../hooks/useCards';
-import { Call, Delete, Edit, Email, Favorite, Web } from '@mui/icons-material';
+import { Call, Delete, Edit, Email, Favorite, ModeEdit, Web } from '@mui/icons-material';
 import { useUser } from '../../users/providers/UserProvider';
-import { changeLikeStatus } from '../../../src/cards/services/cardApiService'
+import CardDeleteDialog from '../components/card/CardDeleteDialog';
+import { deleteCard, changeLikeStatus, getCard } from '../services/cardApiService'
+import ROUTES from '../../routes/routesModel';
+import { useSnackbar } from '../../providers/SnackbarProvider';
 
 const CardDetailPage = () => {
   const { id } = useParams();
   const { value: { card }, handleGetCard } = useCards();
   const { user } = useUser();
-
+  const [isDialogOpen, setDialog] = useState(false);
+  const navigate = useNavigate();
   const { handleLikeCard } = useCards();
+  const snack = useSnackbar();
+  const [isLike, setLike] = useState(false)
+
+
   useEffect(() => {
     handleGetCard(id);
   }, []);
 
 
-  const [isLike, setLike] = useState(() => {
-    if (!user) return false;
 
-  });
+  useEffect(() => {
+    getCard(id).then(id => {
+      const cardLikes = id.likes
+      if (id.likes.includes(user._id)) {
+        setLike(!cardLikes)
+      } else {
+        setLike(false)
+      }
+    })
+  }, [id]);
 
   const handleLike = async () => {
     setLike(!isLike);
     await handleLikeCard(id);
-    // onLike();
+    snack("Card LIKE Success", "info");
+    if (isLike) {
+      snack("Card DISLIKE Success", "info");
+    }
+
   };
 
+  const handleDeleteCard = () => {
+    handleDialog();
+    deleteCard(id);
+    navigate(ROUTES.CARDS);
+    snack("Card Delete Success", "success");
+
+
+
+  }
+
+  const handleDialog = term => {
+    if (term === 'open') return setDialog(true)
+    setDialog(false)
+  }
 
 
   const actions = [
-    { icon: <Edit />, name: 'Edit' },
-    { icon: <Delete />, name: 'Delete' },
+    {
+      icon: <IconButton
+        aria-label="edit card"
+        onClick={() =>
+          navigate(`${ROUTES.EDIT_CARD}/${id}`)
+        }
+      >
+        <ModeEdit />
+      </IconButton>, name: 'Edit'
+    },
+
+
+    {
+      icon: <IconButton
+        aria-label="delete card"
+        onClick={() => handleDialog("open")}
+      >
+        <Delete />
+      </IconButton>, name: 'Delete'
+    },
 
     {
       icon: <IconButton
@@ -50,7 +101,7 @@ const CardDetailPage = () => {
   return (
     <>
       {card &&
-        <Paper variant="outlined" elevation={3} sx={{ padding: 2 }}>
+        <Paper elevation={3} sx={{ padding: 2 }}>
           <Typography spacing={2} sx={{ marginTop: 2 }} variant="h3">Welcome to our Card Page </Typography>
           <Divider variant="middle" />
           <Typography variant="h5">{card.title}</Typography>
@@ -123,7 +174,11 @@ const CardDetailPage = () => {
         </Paper>
 
       }
-
+      <CardDeleteDialog
+        isDialogOpen={isDialogOpen}
+        onDelete={handleDeleteCard}
+        onChangeDialog={handleDialog}
+      />
     </>
   );
 };
