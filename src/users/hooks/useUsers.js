@@ -2,10 +2,11 @@ import { useCallback, useMemo, useState } from "react";
 import { useNavigate } from "react-router";
 import { useUser } from "../providers/UserProvider";
 import useAxios from "../../cards/hooks/useAxios";
-import { login, signup } from "../services/usersApiService";
+import { getUserApi, EditUser, login, signup } from "../services/usersApiService";
 import { getUser, removeToken, setTokenInLocalStorage } from "../services/localStorageService";
 import ROUTES from "../../routes/routesModel";
 import normalizeUser from "../helpers/normalization/normalizeUser";
+import { useSnackbar } from "../../providers/SnackbarProvider";
 
 const useUsers = () => {
     const [users, setUsers] = useState(null);
@@ -13,7 +14,7 @@ const useUsers = () => {
     const [error, setError] = useState(null);
 
     const navigate = useNavigate();
-
+    const snack = useSnackbar();
     const { user, setUser, setToken } = useUser();
 
     useAxios();
@@ -45,6 +46,32 @@ const useUsers = () => {
         setUser(null);
     }, [setUser]);
 
+    const handleGetUser = useCallback(
+        async (id) => {
+          try {
+            const user = await getUserApi(id);
+            requestStatus(false, null, null, user);
+            return user;
+          } catch (error) {
+            requestStatus(false, error, null);
+          }
+        },
+        [requestStatus, handleLogin]
+      );
+
+    const handleEditUser = useCallback(
+        async (id, userFormClient) => {
+          try {
+            await EditUser(id, userFormClient);
+            snack("you update the user successfully", "success");
+            navigate(ROUTES.CARDS);
+          } catch (error) {
+            requestStatus(false, error, null);
+          }
+        },
+        [requestStatus, handleLogin]
+      );
+
     const handleSignup = useCallback(
         async (userFromClient) => {
             try {
@@ -69,6 +96,9 @@ const useUsers = () => {
         handleLogin,
         handleLogout,
         handleSignup,
+        handleGetUser,
+        handleEditUser,
+        useMemo,
         users,
         isLoading,
         error,
