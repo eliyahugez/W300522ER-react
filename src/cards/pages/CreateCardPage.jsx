@@ -28,7 +28,7 @@ const CreateCardPage = () => {
         inputFactory("description", "description", true, "text"),
         inputFactory("phone", "phone", true, "phone"),
         inputFactory("email", "email", true, "email"),
-        inputFactory("webUrl", "web", false, "text"),
+        inputFactory("webUrl", "web", true, "text"),
         inputFactory("imageUrl", "image url", false, "text"),
         inputFactory("imageAlt", "image alt", false, "text"),
         inputFactory("state", "state", false, "text"),

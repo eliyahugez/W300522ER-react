@@ -10,33 +10,44 @@ import ROUTES from "../../routes/routesModel";
 import mapCardToModel from "../helpers/normalization/mapCardToModel";
 import { Container } from "@mui/material";
 import CardForm from "../components/CardForm";
+import { useSnackbar } from "../../providers/SnackbarProvider";
+
 
 const EditCardPage = () => {
+
     const { id } = useParams();
     const {
         handleUpdateCard,
         handleGetCard,
         value: { card },
     } = useCards();
-
     const { user } = useUser();
     const navigate = useNavigate();
+    const snack = useSnackbar();
 
     const { value, ...rest } = useForm(
         initialCardForm,
         cardSchema,
         () => {
+
             handleUpdateCard(card._id, {
                 ...normalizeCard(value.formData),
                 user_id: card.user_id,
                 bizNumber: card.bizNumber
+
             });
         }
     )
 
     useEffect(() => {
         handleGetCard(id).then(data => {
-            if (data.user_id !== user._id) return navigate(ROUTES.CARDS);
+            if (user.isAdmin === true) {
+                const modeledCard = mapCardToModel(data);
+                rest.setFormData(modeledCard);
+            }
+            else if (data.user_id !== user._id) return navigate(ROUTES.CARDS), snack("This is NOT your Card", "warning"), console.log(user);
+
+
             const modeledCard = mapCardToModel(data);
             rest.setFormData(modeledCard);
         })

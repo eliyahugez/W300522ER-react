@@ -26,6 +26,7 @@ const Input = ({
         helperText={error}
         error={Boolean(error)}
         onChange={handleChange}
+
         fullWidth
         autoComplete="off"
       />
@@ -34,19 +35,19 @@ const Input = ({
 };
 
 Input.propTypes = {
-    variant: string,
-    type: string,
-    name: string.isRequired,
-    data: object.isRequired,
-    required: bool,
-    error: string,
-    handleChange: func.isRequired,
+  variant: string,
+  type: string,
+  name: string.isRequired,
+  data: object.isRequired,
+  required: bool,
+  error: string,
+  handleChange: func.isRequired,
 }
 
 Input.defaultProps = {
-    variant: "outlined",
-    type: "text",
-    required: true
+  variant: "outlined",
+  type: "text",
+  required: true
 };
 
 export default memo(Input);

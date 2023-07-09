@@ -1,8 +1,11 @@
-import { Container } from "@mui/material";
+import { Container, Fab } from "@mui/material";
 import PageHeader from "../../components/PageHeader";
 import { useEffect } from "react";
 import CardsFeedback from "../components/CardsFeedback";
 import useCards from "../hooks/useCards";
+import { Navigate } from "react-router-dom";
+import AddIcon from "@mui/icons-material/Add";
+import ROUTES from "../../routes/routesModel";
 
 const CardsPage = () => {
   const { value, handleGetCards, handleDeleteCard } = useCards();
@@ -18,19 +21,23 @@ const CardsPage = () => {
   };
 
   return (
-    <Container>
-      <PageHeader
-        title="Cards"
-        subtitle="Here you can find business cards from all categories"
-      />
+    <>
+      <Container>
+        <PageHeader
+          title="Cards"
+          subtitle="Here you can find business cards from all categories"
+        />
 
-      <CardsFeedback
-        isPending={isPending}
-        error={error}
-        cards={filteredCards}
-        onDelete={onDeleteCard}
-      />
-    </Container>
+        <CardsFeedback
+          isPending={isPending}
+          error={error}
+          cards={filteredCards}
+          onDelete={onDeleteCard}
+        />
+
+      </Container>
+
+    </>
   );
 };
 

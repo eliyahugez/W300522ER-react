@@ -105,7 +105,7 @@ router.put("/:id", auth, async (req, res) => {
 
     const normalizedUser = normalizeUser(req.body);
     const newUser = await updateUser(userId, normalizedUser);
-    normalizedUser.password = generateUserPassword(normalizedUser.password);
+    // normalizedUser.password = generateUserPassword(normalizedUser.password);
     return res.send(newUser);
   } catch (error) {
     return handleError(res, error.status || 500, error.message);

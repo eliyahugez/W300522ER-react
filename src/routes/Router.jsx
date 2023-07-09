@@ -27,7 +27,7 @@ import MyCardsPage from "../cards/pages/MyCardsPage";
 import CreateCardPage from "../cards/pages/CreateCardPage";
 import EditCardPage from "../cards/pages/EditCardPage";
 import FavCardsPage from "../cards/pages/FavCardsPage";
-import EditUserPage from "../cards/pages/EditUserPage";
+import EditUserPage from "../users/pages/EditUserPage";
 
 const Router = () => {
   return (

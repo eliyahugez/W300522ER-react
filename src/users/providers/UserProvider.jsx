@@ -20,6 +20,8 @@ export const UserProvider = ({ children }) => {
         [user, token]
     );
 
+    
+
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 };
 

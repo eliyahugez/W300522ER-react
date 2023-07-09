@@ -129,7 +129,7 @@ const deleteCard = async (cardId, user) => {
       if (!card)
         throw new Error("A card with this ID cannot be found in the database");
 
-      if (card.user_id != user._id)
+      if (!user.isAdmin && card.user_id != user._id)
         throw new Error(
           "Authorization Error: Only the user who created the business card or admin can delete this card"
         );

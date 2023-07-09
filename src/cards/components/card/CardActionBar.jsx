@@ -14,16 +14,18 @@ import ROUTES from "../../../routes/routesModel";
 import useCards from "../../hooks/useCards";
 
 const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes }) => {
-  
+
   const [isDialogOpen, setDialog] = useState(false);
   const navigate = useNavigate();
   const { user } = useUser();
   const { handleLikeCard } = useCards();
   const [isLike, setLike] = useState(() => {
-    if(!user) return false;
+    if (!user) return false;
     // return !!cardLikes.find(id => id === user._id)
     return cardLikes.includes(user._id)
   });
+
+
 
   const handleDialog = term => {
     if (term === 'open') return setDialog(true)
@@ -50,7 +52,7 @@ const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes }) => {
       >
         <Box>
 
-          {(user && user._id === cardUserId || user?.isAdmin) && (
+          {user && (user._id === cardUserId || user.isAdmin === true) && (
             <IconButton
               aria-label="delete card"
               onClick={() => handleDialog("open")}
@@ -60,7 +62,7 @@ const CardActionBar = ({ cardId, onDelete, onLike, cardUserId, cardLikes }) => {
           )}
 
 
-          {user && user._id === cardUserId && (
+          {user && (user._id === cardUserId || user.isAdmin === true) && (
             <IconButton
               aria-label="edit card"
               onClick={() =>

@@ -1,4 +1,4 @@
-import { Container, FormControlLabel, Grid } from "@mui/material";
+import { Checkbox, Container, FormControlLabel, Grid } from "@mui/material";
 import { Navigate } from "react-router-dom";
 import ROUTES from "../../routes/routesModel";
 import useUsers from "../hooks/useUsers";
@@ -162,15 +162,15 @@ const SignupPage = () => {
         />
 
         <Grid item>
-          <FormControlLabel 
-            onChange={(e) => rest.setData({
+          <FormControlLabel
+            onChange={(e) => rest.setFormData({
               ...value.formData,
               isBusiness: !!e.target.checked
             })}
             name="isBusiness"
-            control={<CheckBox value={value.formData.isBusiness} color="primary" />}
+            control={<Checkbox value={value.formData.isBusiness} color="primary" />}
             label="Signup as Business"
-            >
+          >
           </FormControlLabel>
         </Grid>
       </Form>
