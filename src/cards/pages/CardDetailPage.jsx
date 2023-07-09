@@ -3,10 +3,10 @@ import { Typography, Paper, Grid, Link, IconButton, SpeedDial, SpeedDialIcon, Sp
 import PhoneIcon from '@mui/icons-material/Phone';
 import { useNavigate, useParams } from 'react-router-dom';
 import useCards from '../hooks/useCards';
-import { Call, Delete, Edit, Email, Favorite, ModeEdit, Web } from '@mui/icons-material';
+import { Call, Delete, Email, Favorite, ModeEdit, Web } from '@mui/icons-material';
 import { useUser } from '../../users/providers/UserProvider';
 import CardDeleteDialog from '../components/card/CardDeleteDialog';
-import { deleteCard, changeLikeStatus, getCard } from '../services/cardApiService'
+import { deleteCard, getCard } from '../services/cardApiService'
 import ROUTES from '../../routes/routesModel';
 import { useSnackbar } from '../../providers/SnackbarProvider';
 
@@ -23,7 +23,7 @@ const CardDetailPage = () => {
 
   useEffect(() => {
     handleGetCard(id);
-  }, []);
+  }, [id]);
 
 
 
@@ -158,7 +158,12 @@ const CardDetailPage = () => {
 
             <SpeedDial
               ariaLabel="SpeedDial basic example"
-              sx={{ position: 'absolute', bottom: -300, right: "5%" }}
+              sx={{
+                position: 'fixed',
+                bottom: '5%',
+                right: '5%',
+                transform: 'translateX(100%)'
+              }}
               icon={<SpeedDialIcon />}
             >
               {actions.map((action) => (
